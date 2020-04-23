@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	<script src="https://kit.fontawesome.com/efd92865ea.js" crossorigin="anonymous"></script>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+		}
+
+
+.mainBox
+{
+	margin: 20px auto;
+    width: 60%;
+    height: 500px;
+}
+.mainImg
+{
+	width: 100%;
+	height: 100%;
+}
+.mainImg img
+{
+	width: 100%;
+	height: 100%;
+}
+.thumbnails{width: 100%;margin-top: 20px;}
+.thumbnails img
+{
+	padding: 5px;
+    background-color: #eee;
+    width:19.58%;
+    border-radius:5px;
+    cursor: pointer;
+    opacity: .7;
+}
+
+.thumbnails .active
+{
+	opacity: 1;
+	background-color: deepskyblue;
+}
+
+.mainImg
+{
+	position: relative;
+}
+.mainImg i
+{
+	position: absolute;
+    color:deepskyblue;
+    opacity: .5;
+    font-size: 25px;
+    transition: 200ms;
+}
+    
+.mainImg i:hover
+{
+	opacity: .8;
+	cursor: pointer;
+	transition: 200ms;
+}
+    
+.mainImg i:first-of-type{top:47%;left:2%;}
+.mainImg i:last-of-type{top:47%;right:2%;}
+	</style>
+</head>
+<body>
+<div class="mainBox">
+    <div class="mainImg">
+
+        <img src="img/54.jpg" alt="">
+        <i class="fa fa fa-chevron-left"></i>
+        <i class="fa fa fa-chevron-right"></i>
+
+    </div>
+
+    <div class="thumbnails">
+        <img class="active" src="img/54.jpg" alt="">
+        <img src="img/55.jpg" alt="">
+        <img src="img/56.jpg" alt="">
+        <img src="img/57.jpg" alt="">
+        <img src="img/58.jpg" alt="">
+    </div>  
+</div><!-- mainBox -->
+<!-- <script type="text/javascript" src="jquery-3.4.1.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function () {
+
+
+$(".thumbnails img").click(function() // equivalent to $(".thumbnails img").on("click",function(){});
+{
+    $(this).addClass("active");
+    $(this).siblings().removeClass("active");
+    $(".mainImg img").hide();
+    // $(".mainImg img").slideUp(10);
+    // $(".mainImg img").show(400);
+    // $(".mainImg img").slideDown(400);
+    $(".mainImg img").fadeIn(1000);
+    $(".mainImg img").attr("src",$(this).attr("src"));
+    
+});
+
+
+$(".mainImg i:nth-child(2)").click(function () {
+    if( $("img.active").is(":first-child"))
+        $(".thumbnails img:last-child ").click(); // The click() method attaches an event handler function to an HTML element. The function is executed when the user clicks on the HTML element. 
+    
+    else
+        $("img.active").prev().click();
+    });
+
+$(".mainImg i:nth-child(3)").click(function () {
+    if( $("img.active").is(":last-child"))
+        $(".thumbnails img:first-child ").click();
+    else
+        $("img.active").next().click();
+    });
+
+
+
+});
+
+</script>
+</body>
+</html>
